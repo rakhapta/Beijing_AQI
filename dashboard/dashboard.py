@@ -10,7 +10,7 @@ from PIL import Image
 datasets = {
     "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/dongsi.csv"),
     "Huairou": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/huairou.csv"),
-    "Tiantian": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/tiantan.csv"),
+    "Tiantan": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/tiantan.csv"),
 
 }
 
