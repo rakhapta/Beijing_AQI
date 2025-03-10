@@ -9,8 +9,8 @@ from PIL import Image
 # Load Data 
 datasets = {
     "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/dongsi.csv"),
-    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/huairou.csv"),
-    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/tiantan.csv"),
+    "Huairou": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/huairou.csv"),
+    "Tiantian": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/tiantan.csv"),
 
 }
 
@@ -20,9 +20,9 @@ for df in datasets.values():
 
 # Load Images
 district_images = {
-    "Dongsi": "dongsi.jpg",
-    "Huairou": "huairou.jpg",
-    "Tiantan": "tiantan.jpg"
+    "Dongsi": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/dongsi.jpg",
+    "Huairou": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/huairou.jpg",
+    "Tiantan": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/tiantan.jpg"
 }
 def pm25_to_aqi_category(pm25):
     if pm25 <= 12:
