@@ -22,7 +22,7 @@ for df in datasets.values():
 district_images = {
     "Dongsi": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/dongsi.jpg",
     "Huairou": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/huairou.jpg",
-    "Tiantan": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/tiantan.jpg"
+    "Tiantan": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/tiantan.jpg",
 }
 def pm25_to_aqi_category(pm25):
     if pm25 <= 12:
