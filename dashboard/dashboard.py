@@ -22,8 +22,9 @@ for df in datasets.values():
 district_images = {
     "Dongsi": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/main/dashboard/dongsi.jpg",
     "Huairou": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/main/dashboard/huairou.jpg",
-    "Tiantan": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/main/dashboard/tiantan.jpg"
+    "Tiantan": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/main/dashboard/tiantan.jpg",
 }
+
 def pm25_to_aqi_category(pm25):
     if pm25 <= 12:
         return "Good"
@@ -180,14 +181,12 @@ if page == "🏠 Homepage":
     st.subheader("📷 Select a District to View Details")
     col1, col2, col3 = st.columns(3)
     
-    for i, (district, image_path) in enumerate(district_images.items()):
-        img = Image.open(image_path)
-        with [col1, col2, col3][i]:
-            st.image(img, caption=district, use_container_width=True)
-            if st.button(f"Select {district}"):
-                st.session_state["selected_district"] = district
-                st.session_state["page"] = "📊 District Dashboard"
-                st.rerun()
+    for district, image_url in district_images.items():
+        st.image(image_url, caption=district, use_container_width=True)
+    if st.button(f"Select {district}"):
+        st.session_state["selected_district"] = district
+        st.session_state["page"] = "📊 District Dashboard"
+        st.rerun()
     
     st.subheader("🌍 Map of Air Pollution Levels in Beijing")
     district_locations = {
