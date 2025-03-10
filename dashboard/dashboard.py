@@ -180,17 +180,19 @@ if page == "🏠 Homepage":
 
     st.subheader("📷 Select a District to View Details")
     
-    col1, col2, col3 = st.columns(3)  # Define columns for layout
-    cols = itertools.cycle([col1, col2, col3])  # Cycle through columns 
-    
-    for district, image_url in district_images.items():
-        col = next(cols)  # Get the next column
-    with col:
-        st.image(image_url, caption=district, use_container_width=True)
-        if st.button(f"Select {district}"):
-            st.session_state["selected_district"] = district
-            st.session_state["page"] = "📊 District Dashboard"
-            st.rerun()
+    # Create columns dynamically
+    num_districts = len(district_images)
+    cols = st.columns(min(num_districts, 3))  # Create up to 3 columns
+
+    # Loop through districts and place them in columns
+    for index, (district, image_url) in enumerate(district_images.items()):
+        col = cols[index % 3]  # Distribute across columns
+        with col:
+            st.image(image_url, caption=district, use_column_width=True)  
+            if st.button(f"Select {district}", key=f"btn_{district}"):
+                st.session_state["selected_district"] = district
+                st.session_state["page"] = "📊 District Dashboard"
+                st.experimental_rerun()  # Ensures the app refreshes after button click
     
     st.subheader("🌍 Map of Air Pollution Levels in Beijing")
     district_locations = {
