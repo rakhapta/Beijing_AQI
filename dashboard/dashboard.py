@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import folium
 from streamlit_folium import folium_static
-from PIL import Image
+import itertools
 
 # Load Data 
 datasets = {
@@ -182,11 +182,13 @@ if page == "🏠 Homepage":
     col1, col2, col3 = st.columns(3)
     
     for district, image_url in district_images.items():
+        col = next(cols)  # Get the next column
+    with col:
         st.image(image_url, caption=district, use_container_width=True)
-    if st.button(f"Select {district}"):
-        st.session_state["selected_district"] = district
-        st.session_state["page"] = "📊 District Dashboard"
-        st.rerun()
+        if st.button(f"Select {district}"):
+            st.session_state["selected_district"] = district
+            st.session_state["page"] = "📊 District Dashboard"
+            st.rerun()
     
     st.subheader("🌍 Map of Air Pollution Levels in Beijing")
     district_locations = {
