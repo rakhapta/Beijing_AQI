@@ -180,6 +180,7 @@ if page == "🏠 Homepage":
 
     st.subheader("📷 Select a District to View Details")
     col1, col2, col3 = st.columns(3)
+    cols = itertools.cycle([col1, col2, col3]) 
     
     for district, image_url in district_images.items():
         col = next(cols)  # Get the next column
