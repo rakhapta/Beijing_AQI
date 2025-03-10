@@ -8,9 +8,10 @@ from PIL import Image
 
 # Load Data
 datasets = {
-    "Dongsi": pd.read_csv("dongsi.csv"),
-    "Huairou": pd.read_csv("huairou.csv"),
-    "Tiantan": pd.read_csv("tiantan.csv"),
+    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/submission/main/dashboard/dongsi.csv"),
+    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/submission/main/dashboard/huairou.csv"),
+    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/submission/main/dashboard/tiantan.csv"),
+
 }
 
 # Konversi waktu pada setiap dataset
