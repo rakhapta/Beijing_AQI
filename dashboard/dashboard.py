@@ -179,8 +179,9 @@ if page == "🏠 Homepage":
     st.pyplot(fig)
 
     st.subheader("📷 Select a District to View Details")
-    col1, col2, col3 = st.columns(3)
-    cols = itertools.cycle([col1, col2, col3]) 
+    
+    col1, col2, col3 = st.columns(3)  # Define columns for layout
+    cols = itertools.cycle([col1, col2, col3])  # Cycle through columns 
     
     for district, image_url in district_images.items():
         col = next(cols)  # Get the next column
