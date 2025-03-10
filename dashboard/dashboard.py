@@ -188,11 +188,11 @@ if page == "🏠 Homepage":
     for index, (district, image_url) in enumerate(district_images.items()):
         col = cols[index % 3]  # Distribute across columns
         with col:
-            st.image(image_url, caption=district, use_column_width=True)  
+            st.image(image_url, caption=district, use_container_width=True)  
             if st.button(f"Select {district}", key=f"btn_{district}"):
                 st.session_state["selected_district"] = district
                 st.session_state["page"] = "📊 District Dashboard"
-                st.experimental_rerun()  # Ensures the app refreshes after button click
+                st.rerun()  # Ensures the app refreshes after button click
     
     st.subheader("🌍 Map of Air Pollution Levels in Beijing")
     district_locations = {
