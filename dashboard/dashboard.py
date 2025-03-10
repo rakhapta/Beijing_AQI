@@ -6,11 +6,11 @@ import folium
 from streamlit_folium import folium_static
 from PIL import Image
 
-# Load Data
+# Load Data 
 datasets = {
-    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/submission/main/dashboard/dongsi.csv"),
-    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/submission/main/dashboard/huairou.csv"),
-    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/submission/main/dashboard/tiantan.csv"),
+    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/dongsi.csv"),
+    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/huairou.csv"),
+    "Dongsi": pd.read_csv("https://raw.githubusercontent.com/rakhapta/Beijing_AQI/refs/heads/main/dashboard/tiantan.csv"),
 
 }
 
