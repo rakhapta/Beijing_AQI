@@ -59,7 +59,7 @@ if "page" not in st.session_state:
 if "selected_district" not in st.session_state:
     st.session_state["selected_district"] = "Dongsi"
 
-# Define pages with emojis
+
 pages = ["🏠 Homepage", "📊 District Dashboard"]
 
 st.sidebar.markdown("### Select Pages")  # Default header, bigger than in radio (kecil kurang suka)
@@ -141,8 +141,16 @@ if page == "🏠 Homepage":
 
     st.subheader("📌 PM2.5 By Seasons Across Districts")
 
+    # Add season column
     combined_data['season'] = (combined_data['month'] % 12 + 3) // 3  
 
+    # Calculate the average PM2.5 per season, dropping NaNs
+    seasonal_avg = combined_data.groupby('season')['PM2.5'].mean().dropna()
+
+    # Debugging print statements
+    print(seasonal_avg)
+
+    # Create the plot
     fig, ax = plt.subplots(figsize=(8, 6))
     ax.plot(seasonal_avg, marker='o', linestyle='-', color='b')
 
@@ -154,15 +162,11 @@ if page == "🏠 Homepage":
     ax.set_xticklabels(['Spring', 'Summer', 'Autumn', 'Winter'])
     ax.grid()
 
-    st.pyplot(fig) 
-
     st.subheader("📌 PM2.5 Levels by Hour of the Day Across Districts")
 
-    # Add a column to each dataset to identify the district
-    for district_name, df in datasets.items():
-        df["District"] = district_name  # Add a 'District' column
-        df["hour"] = pd.to_datetime(df["datetime"]).dt.hour  # Extract the hour from the 'datetime' column
-
+    # Extract 'hour' after creating combined_data
+    combined_data["hour"] = combined_data["datetime"].dt.hour
+    
     # Group by District and hour, then calculate the average PM2.5 levels
     hourly_avg = combined_data.groupby(["District", "hour"])["PM2.5"].mean().reset_index()
 
