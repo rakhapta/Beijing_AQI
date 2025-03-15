@@ -162,6 +162,8 @@ if page == "🏠 Homepage":
     ax.set_xticklabels(['Spring', 'Summer', 'Autumn', 'Winter'])
     ax.grid()
 
+    st.pyplot(fig)
+    
     st.subheader("📌 PM2.5 Levels by Hour of the Day Across Districts")
 
     # Extract 'hour' after creating combined_data
