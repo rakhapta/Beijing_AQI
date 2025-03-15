@@ -41,7 +41,7 @@ Each dataset contains:
 ### 🔧 Requirements
 Make sure you have the following Python libraries installed:
 ```bash
-pip install pandas numpy matplotlib seaborn streamlit
+pip install -r requirements.txt
 ```
 
 ### ▶️ Running the Analysis
@@ -55,7 +55,7 @@ Run the data analysis script to explore insights.
 ### 🌍 Running the Streamlit App
 To launch the interactive web app:
 ```bash
-streamlit run app.py
+streamlit run dashboard/dashboard.py
 ```
 
 ---

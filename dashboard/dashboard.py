@@ -4,7 +4,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import folium
 from streamlit_folium import folium_static
-import itertools
 
 # Load Data 
 datasets = {
@@ -24,6 +23,8 @@ district_images = {
     "Huairou": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/main/dashboard/huairou.jpg",
     "Tiantan": "https://raw.githubusercontent.com/rakhapta/Beijing_AQI/main/dashboard/tiantan.jpg",
 }
+
+combined_data = pd.concat([df.assign(District=district) for district, df in datasets.items()])
 
 def pm25_to_aqi_category(pm25):
     if pm25 <= 12:
@@ -102,7 +103,6 @@ if page == "🏠 Homepage":
     st.subheader("📌 Correlation Between PM2.5 and Meteorological Factors Across All Districts")
 
     # Combine data and calculate correlation
-    combined_data = pd.concat([df.assign(District=district) for district, df in datasets.items()])
     corr = combined_data[["PM2.5", "TEMP", "PRES", "WSPM", "DEWP", "RAIN"]].corr()
 
     # Create a heatmap with explanations
@@ -139,6 +139,22 @@ if page == "🏠 Homepage":
     You can explore individual district dashboards to better understand the localized relationships between meteorological factors and PM2.5 levels.
     """)
 
+    st.subheader("📌 PM2.5 By Seasons Across Districts")
+
+    combined_data['season'] = (combined_data['month'] % 12 + 3) // 3  
+
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.plot(seasonal_avg, marker='o', linestyle='-', color='b')
+
+    # Label and title
+    ax.set_xlabel('Season')
+    ax.set_ylabel('Average PM2.5')
+    ax.set_title('Overall Seasonal Trend of PM2.5 (All Districts)')
+    ax.set_xticks(range(1, 5))
+    ax.set_xticklabels(['Spring', 'Summer', 'Autumn', 'Winter'])
+    ax.grid()
+
+    st.pyplot(fig) 
 
     st.subheader("📌 PM2.5 Levels by Hour of the Day Across Districts")
 
@@ -146,9 +162,6 @@ if page == "🏠 Homepage":
     for district_name, df in datasets.items():
         df["District"] = district_name  # Add a 'District' column
         df["hour"] = pd.to_datetime(df["datetime"]).dt.hour  # Extract the hour from the 'datetime' column
-
-    # Combine all datasets into a single DataFrame
-    combined_data = pd.concat(datasets.values(), ignore_index=True)
 
     # Group by District and hour, then calculate the average PM2.5 levels
     hourly_avg = combined_data.groupby(["District", "hour"])["PM2.5"].mean().reset_index()
