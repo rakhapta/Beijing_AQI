@@ -2,6 +2,8 @@
 
 This repository contains an analysis and visualization of Beijing's air quality data, focusing on **PM2.5 pollution levels**. The project includes both a **data analysis pipeline** and an interactive **Streamlit web app** for exploring air quality trends across multiple districts.
 
+you can access the dashboard here : https://rakhapta-beijing-aqi-dashboarddashboard-zjvbr3.streamlit.app/
+
 ## 📌 Project Overview
 
 Air pollution remains a major challenge in urban areas like **Beijing**. This project aims to analyze **air quality trends** and visualize **pollution levels** across districts using historical data.
